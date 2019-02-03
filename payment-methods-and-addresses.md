@@ -108,11 +108,23 @@ As in the case of ScriptPubkey and ScriptSig, redeemScript only can be the same 
 
 Then, we can choose a P2SH payment method to an address whom redeem script is like P2PK ScriptPubKey (the first one). Or maybe you want to use a multisig redeem script... that's because we said the redeemer decide how the bitcoins can be spent without nobody knowing it! If you know the redeem script, you can say `P2SH-<redeem script type>`, for example, `P2SH-P2PK` or `P2SH-P2PKH`, etc.
 
-The redeem script will be provided by the redeemer in the ScriptSig (did you forget it? ;-) ): `<sig1> [<sig2>, <sig3>, ...] {serialized redeem script}`
+The redeem script will be provided by the redeemer inside the ScriptSig: `<sig1> [<sig2>, <sig3>, ...] {serialized redeem script}`
 
 ## Summarizing
 
+|Receiver wants to be paid using|Receiver address derived from...  |To unlock funds    |
+|:-----------------------------:|:--------------------------------:|:-----------------:|
+|P2PK                           |PublicKey                         |signature          |
+|P2PKH                          |BASE58_ENCODE(HASH160(PublicKey)) |sig + pubkey       |
+|P2SH                           |Redeem Script                     | data+redeem script|
 
+Reedem scripts:
+
+| Payment method|Reedem script template                                             |Alias|
+|:-------------:|:-----------------------------------------------------------------:|:-----:|
+|P2SH           |P2PK:`<pubkey> OP_CHECKSIG`                                      |P2SH-P2PK|
+|P2SH           |P2PKH:`OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG`|P2SH-P2PKH|
+|P2SH           |P2 Multisig:`<m> <A pubkey> [B pubkey] [C pubkey...] <n> OP_CHECKMULTISIG`|P2SH Multisig
 
 ## References
 
