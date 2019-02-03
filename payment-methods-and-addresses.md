@@ -112,11 +112,14 @@ The redeem script will be provided by the redeemer inside the ScriptSig: `<sig1>
 
 ## Summarizing
 
-|Receiver wants to be paid using|Receiver address derived from...  |To unlock funds    |
-|:-----------------------------:|:--------------------------------:|:-----------------:|
-|P2PK                           |PublicKey                         |signature          |
-|P2PKH                          |BASE58_ENCODE(HASH160(PublicKey)) |sig + pubkey       |
-|P2SH                           |Redeem Script                     | data+redeem script|
+Before we continue with **segwit** addresses, let's summarize what we have seen:
+
+|Payment method                 |ScriptPubkey                      |ScriptSig    |Address|
+|:-----------------------------:|:--------------------------------:|:-----------:|:-----:|
+|P2PK                           |`<Pubkey> OP_CHECKSIG`            |`<sign>`|PublicKey  |
+|P2PKH                          |`OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG`|`<sign> <PubKey>`|HASH160(PublicKey)|
+|Multisig                       |`<m> <A pubkey> [B pubkey] [C pubkey...] <n> OP_CHECKMULTISIG`|`OP_0 <A sig> [B sig] [C sig...]`|PublicKeys|
+|P2SH                           |`OP_HASH160 <Hash160(redeemScript)> OP_EQUAL`|`<sign> [sign] [sign...] <redeemScript>`|HASH160(redeem script)|
 
 Reedem scripts:
 
