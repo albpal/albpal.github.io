@@ -22,7 +22,7 @@ A tip to remember these concepts:
 
 These two variables are scripts, ie are programs, written in a language similar to Forth:
 
-```Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is intentionally not Turing-complete, with no loops.```https://en.bitcoin.it/wiki/Script
+```Bitcoin uses a scripting system for transactions. Forth-like, Script is simple, stack-based, and processed from left to right. It is intentionally not Turing-complete, with no loops.```Source: https://en.bitcoin.it/wiki/Script
 
 For a detailed overview about how this language is executed, see the below video by Andreas Antonopoulos:
 
@@ -110,7 +110,7 @@ Then, we can choose a P2SH payment method to an address whom redeem script is li
 
 The redeem script will be provided by the redeemer inside the ScriptSig: `<sig1> [<sig2>, <sig3>, ...] {serialized redeem script}`
 
-## Summarizing
+### Summarizing
 
 Before we continue with **segwit** addresses, let's summarize what we have seen:
 
@@ -128,6 +128,13 @@ Reedem scripts:
 |P2SH           |P2PK:`<pubkey> OP_CHECKSIG`                                      |P2SH-P2PK|
 |P2SH           |P2PKH:`OP_DUP OP_HASH160 <PubkeyHash> OP_EQUALVERIFY OP_CHECKSIG`|P2SH-P2PKH|
 |P2SH           |P2 Multisig:`<m> <A pubkey> [B pubkey] [C pubkey...] <n> OP_CHECKMULTISIG`|P2SH Multisig
+
+## Segregate Witness
+
+Work in progress.
+
+https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki
+
 
 ## References
 
